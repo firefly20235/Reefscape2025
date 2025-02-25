@@ -26,7 +26,7 @@ public class RobotContainer {
     public static final Elevator ELEVATOR = new Elevator();
 
     private final CommandXboxController driverController1 = new CommandXboxController(OIConstants.kDriverControllerPort);
-    private final CommandXboxController driverController2 = new CommandXboxController(OIConstants.kDriverControllerPort);
+    private final CommandXboxController driverController2 = new CommandXboxController(OIConstants.kOperatorControllerPort);
 
 
     public RobotContainer() {
@@ -38,7 +38,6 @@ public class RobotContainer {
 
         configureButtonBindings();
         
-        ELEVATOR.setDefaultCommand(ElevatorCommands.moveToHeight(ElevatorState.L1));
     }
 
     private void configureButtonBindings() {
@@ -47,15 +46,13 @@ public class RobotContainer {
         driverController2.a().and(driverController2.povDown()).whileTrue(OutputCommands.output(OutputState.L4));
         driverController2.a().and(driverController2.povCenter()).whileTrue(OutputCommands.output(OutputState.L1));
         driverController2.y().whileTrue(OutputCommands.output(OutputState.INTAKE));
-
+        driverController2.b().onTrue(OutputCommands.output(OutputState.STOP));
 
         driverController2.povUp().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L2));
         driverController2.povRight().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L3));
         driverController2.povDown().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L4));
 
-        driverController1.y().onTrue(SwerveCommands.getResetHeadingCommand());
-
-                               
+        driverController1.x().onTrue(SwerveCommands.getResetHeadingCommand());
     }
 
     @Logged(name = "Swerve")

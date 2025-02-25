@@ -17,7 +17,6 @@ public class Elevator extends SubsystemBase {
         SparkMaxConfig motorconfig = new SparkMaxConfig();
         motorconfig.encoder.positionConversionFactor(ElevatorConstants.ENCODER_TO_METERS);
         motorconfig.encoder.velocityConversionFactor(ElevatorConstants.ENCODER_TO_METERS / 60);
-        motorconfig.inverted(false);
         ElevatorConstants.elevatorMotor.configure(motorconfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
 
         new Trigger(this::isAtBottom).onTrue(new InstantCommand(this::resetEncoder));
