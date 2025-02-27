@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Swerve extends SubsystemBase {
     private static final Swerve INSTANCE = new Swerve();
     private final SwerveModule[] swerveModules = SwerveConstants.SWERVE_MODULES;
+    private double yawOffset = 0;
 
     private Swerve() {
     }
@@ -24,11 +25,11 @@ public class Swerve extends SubsystemBase {
     }
 
     public double getYaw() {
-        return -getGyro().getYaw();
+        return -getGyro().getYaw() - this.yawOffset;
     }
 
     public void setYaw(double yaw) {
-        getGyro().setAngleAdjustment(-yaw);
+        this.yawOffset = -getGyro().getYaw();
     }
 
     protected AHRS getGyro() {

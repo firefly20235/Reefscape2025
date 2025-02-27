@@ -20,7 +20,7 @@ public class ElevatorCommands {
     }
 
     public static Command resetEncoder(Elevator elevator) {
-        return new InstantCommand(elevator::resetEncoder, elevator);
+        return new InstantCommand(elevator::resetEncoder, elevator).ignoringDisable(true);
     }
     
 }

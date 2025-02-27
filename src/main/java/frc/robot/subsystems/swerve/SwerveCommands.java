@@ -45,7 +45,7 @@ public class SwerveCommands {
     }
 
     public static Command getResetHeadingCommand() {
-        return new InstantCommand(()->SWERVE.setHeading(new Rotation2d()));
+        return new InstantCommand(()->SWERVE.setHeading(new Rotation2d())).ignoringDisable(true);
     }
 
 

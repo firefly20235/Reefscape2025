@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ElevatorConstants {
 
-    public static final int LIMIT_SWITCH_PORT = 1; 
+    public static final int LIMIT_SWITCH_PORT = 0; 
     public static final DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
 
     public enum ElevatorState {
         L4(1.2),
-        L3(0.8),
-        L2(0.5),
+        L3(0.55),
+        L2(0.15),
         L1(0.0);
 
         double height;

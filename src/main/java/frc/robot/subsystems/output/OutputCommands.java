@@ -26,6 +26,6 @@ public class OutputCommands {
                
             },
             RobotContainer.OUTPUT
-    ).until(RobotContainer.OUTPUT::hasCoral);
+    ).until(RobotContainer.OUTPUT::hasCoral).andThen(output(OutputState.INTAKE).withTimeout(0.2));
     }
 }

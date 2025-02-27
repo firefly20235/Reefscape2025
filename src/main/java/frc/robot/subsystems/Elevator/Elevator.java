@@ -17,9 +17,10 @@ public class Elevator extends SubsystemBase {
         SparkMaxConfig motorconfig = new SparkMaxConfig();
         motorconfig.encoder.positionConversionFactor(ElevatorConstants.ENCODER_TO_METERS);
         motorconfig.encoder.velocityConversionFactor(ElevatorConstants.ENCODER_TO_METERS / 60);
-        ElevatorConstants.elevatorMotor.configure(motorconfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
-
-        new Trigger(this::isAtBottom).onTrue(new InstantCommand(this::resetEncoder));
+        ElevatorConstants.elevatorMotor.configure(motorconfig, ResetMode.kNoResetSafeParameters,
+                PersistMode.kPersistParameters);
+        resetEncoder();
+        // new Trigger(this::isAtBottom).onTrue(new InstantCommand(this::resetEncoder));
     }
 
     public void initController(ElevatorState state) {
@@ -28,16 +29,12 @@ public class Elevator extends SubsystemBase {
     }
 
     public void runMotor() {
-        if (isAtBottom()) {
-            stop();
-            resetEncoder(); 
-        } else {
-            double feedback = ElevatorConstants.controller.calculate(getCurrentPosition());
-            var setpoint = ElevatorConstants.controller.getSetpoint();
-            double feedforward = ElevatorConstants.FEEDFORWARD.calculate(setpoint.velocity);
-            ElevatorConstants.elevatorMotor.setVoltage(feedback + feedforward);
-        }
- }
+        double feedback = ElevatorConstants.controller.calculate(getCurrentPosition());
+        var setpoint = ElevatorConstants.controller.getSetpoint();
+        double feedforward = ElevatorConstants.FEEDFORWARD.calculate(setpoint.velocity);
+        ElevatorConstants.elevatorMotor.setVoltage(feedback + feedforward);
+    }
+
     public void setTargetHeight(ElevatorState state) {
         if (state != ElevatorState.L1) {
             initController(state);
@@ -46,7 +43,6 @@ public class Elevator extends SubsystemBase {
             stop(); // Move to L1 when button is released
         }
     }
-    
 
     public void stop() {
         ElevatorConstants.elevatorMotor.set(0);
@@ -61,7 +57,7 @@ public class Elevator extends SubsystemBase {
     }
 
     public boolean isAtBottom() {
-        return ElevatorConstants.limitSwitch.get(); 
+        return ElevatorConstants.limitSwitch.get();
     }
 
     public void resetEncoder() {

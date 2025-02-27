@@ -33,21 +33,22 @@ public class RobotContainer {
 
     public RobotContainer() {
         SWERVE.setDefaultCommand(SwerveCommands.getFieldRelativeOpenLoopSupplierDriveCommand(
-                () -> -driverController1.getLeftY() / 4,
-                () -> -driverController1.getLeftX() / 4,
-                () -> -driverController1.getRightX() / 8
+                () -> -driverController1.getLeftY()/2.5,
+                () -> -driverController1.getLeftX()/2.5 ,
+                () -> -driverController1.getRightX() /2
         ));
 
         configureButtonBindings();
-        
+        ELEVATOR.setDefaultCommand(ElevatorCommands.moveToHeight(ElevatorState.L1));
+        OUTPUT.setDefaultCommand(OutputCommands.output(OutputState.STOP));
     }
 
     private void configureButtonBindings() {
         driverController2.a().and(driverController2.povDown()).whileTrue(OutputCommands.output(OutputState.L4));
-        driverController2.a().and(driverController2.povUp().or(driverController2.povRight())).whileTrue(OutputCommands.output(OutputState.L2L3));
+         driverController2.a().and(driverController2.povUp().or(driverController2.povRight())).whileTrue(OutputCommands.output(OutputState.L2L3));
         driverController2.a().and(driverController2.povDown()).whileTrue(OutputCommands.output(OutputState.L4));
         driverController2.a().and(driverController2.povCenter()).whileTrue(OutputCommands.output(OutputState.L1));
-        driverController2.y().whileTrue(OutputCommands.output(OutputState.INTAKE));
+        driverController2.y().whileTrue(OutputCommands.intake());
         driverController2.b().onTrue(OutputCommands.output(OutputState.STOP));
 
         driverController2.povUp().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L2));
@@ -74,9 +75,9 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         return SwerveCommands.getResetHeadingCommand().andThen(SwerveCommands.getFieldRelativeClosedLoopSupplierDriveCommand(
-                ()->-0.1,
+                ()->-0.2,
                 ()->0,
                 ()->0
-        )).withTimeout(2);
+        )).withTimeout(3);
     }
 }
