@@ -49,7 +49,6 @@ public class RobotContainer {
         driverController2.a().and(driverController2.povDown()).whileTrue(OutputCommands.output(OutputState.L4));
         driverController2.a().and(driverController2.povCenter()).whileTrue(OutputCommands.output(OutputState.L1));
         driverController2.y().whileTrue(OutputCommands.intake());
-        driverController2.b().onTrue(OutputCommands.output(OutputState.STOP));
 
         driverController2.povUp().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L2));
         driverController2.povRight().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L3));
@@ -74,6 +73,10 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommand() {
-        return (ElevatorCommands.moveToHeight(ElevatorState.L3)).withTimeout(3).andThen(OutputCommands.output(OutputState.L2L3));
+        return SwerveCommands.getResetHeadingCommand().andThen(SwerveCommands.getFieldRelativeClosedLoopSupplierDriveCommand(
+                ()->-0.2,
+                ()->0,
+                ()->0
+        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L4)).andThen(OutputCommands.output(OutputState.L4));
     }
 }
