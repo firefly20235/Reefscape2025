@@ -29,7 +29,7 @@ public class Swerve extends SubsystemBase {
     }
 
     public void setYaw(double yaw) {
-        this.yawOffset = -getGyro().getYaw();
+        this.yawOffset = -getGyro().getYaw() - yaw;
     }
 
     protected AHRS getGyro() {
