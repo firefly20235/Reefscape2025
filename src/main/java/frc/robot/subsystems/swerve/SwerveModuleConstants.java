@@ -67,10 +67,10 @@ public class SwerveModuleConstants {
 
             
     private static final double
-        FRONT_LEFT_STEER_ENCODER_OFFSET = 0.506592,
-        FRONT_RIGHT_STEER_ENCODER_OFFSET = 0.003418,
-        REAR_LEFT_STEER_ENCODER_OFFSET = 0.590576,
-        REAR_RIGHT_STEER_ENCODER_OFFSET = 0.395996;
+        FRONT_LEFT_STEER_ENCODER_OFFSET = 0.989990,
+        FRONT_RIGHT_STEER_ENCODER_OFFSET = 0.141602,
+        REAR_LEFT_STEER_ENCODER_OFFSET = 0.321777,
+        REAR_RIGHT_STEER_ENCODER_OFFSET = 0.251709;
     private static final SparkMax
             FRONT_LEFT_STEER_MOTOR = new SparkMax(
                     FRONT_LEFT_STEER_MOTOR_ID,
