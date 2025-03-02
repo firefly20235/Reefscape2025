@@ -9,7 +9,7 @@ public class OutputConstants {
      public static final int BEAM_BREAKER_PORT = 1; 
     public static final DigitalInput beamBreaker = new DigitalInput(BEAM_BREAKER_PORT);
      public enum OutputState {
-        L4 (-ANGLE_POWER, -OUT_POWER),
+        L4(OUT_POWER,L4_TOP_POWER),
         L2L3 (-ANGLE_POWER,-OUT_POWER),
         STOP (0, 0),
         L1 (-L1_TOP_MOTOR_POWER, -OUT_POWER),
@@ -29,7 +29,8 @@ public class OutputConstants {
     static final SparkMax down = new SparkMax(31, SparkLowLevel.MotorType.kBrushless);
     static final double ANGLE_POWER = 0.08
      ,OUT_POWER= -0.3
-     ,L1_TOP_MOTOR_POWER = 0.12;
+     ,L1_TOP_MOTOR_POWER = 0.12
+     , L4_TOP_POWER=0.1; 
 
 
 }

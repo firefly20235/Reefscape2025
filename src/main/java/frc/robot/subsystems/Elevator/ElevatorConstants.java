@@ -14,7 +14,7 @@ public class ElevatorConstants {
     public static final DigitalInput limitSwitch = new DigitalInput(LIMIT_SWITCH_PORT);
 
     public enum ElevatorState {
-        L4(1.2),
+        L4(1.23),
         L3(0.55),
         L2(0.15),
         L1(0.0);
