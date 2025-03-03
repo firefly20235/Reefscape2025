@@ -77,8 +77,7 @@ public class RobotContainer {
                 ()->-0.2,
                 ()->0,
                 ()->0
-        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L4)).withTimeout(3).
-        andThen(OutputCommands.output(OutputState.L4)).withTimeout(1).
+        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L4).raceWith(OutputCommands.output(OutputState.L4).withTimeout(0.5))).withTimeout(3).
         andThen((SwerveCommands.getFieldRelativeClosedLoopSupplierDriveCommand(
             ()->-0,
             ()->0,
