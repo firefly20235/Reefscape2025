@@ -3,11 +3,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.output.OutputCommands;
 
 import edu.wpi.first.epilogue.Logged;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OIConstants;
@@ -77,11 +79,9 @@ public class RobotContainer {
                 ()->-0.2,
                 ()->0,
                 ()->0
-        )).withTimeout(2).raceWith(ElevatorCommands.moveToHeight(ElevatorState.L4).andThen(OutputCommands.output(OutputState.L4).withTimeout(2))).
-        andThen((SwerveCommands.getFieldRelativeClosedLoopSupplierDriveCommand(
-            ()->-0,
-            ()->0,
-            ()->0.2
-    )).withTimeout(2)).andThen(SwerveCommands.getResetHeadingCommand());
+        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L4).
+        raceWith(new WaitCommand (3).andThen(OutputCommands.output(OutputState.L4).withTimeout(2).
+        andThen(SwerveCommands.setHeadingCommand(Rotation2d.fromDegrees(180))))));
+        
     }
 }

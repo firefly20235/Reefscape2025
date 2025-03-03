@@ -52,7 +52,7 @@ public class SwerveModule {
     }
 
     protected void setTargetClosedLoopVelocity(double velocity) {
-        // TODO
+        
     }
 
     protected void setTargetOpenLoopVelocity(double velocity) {

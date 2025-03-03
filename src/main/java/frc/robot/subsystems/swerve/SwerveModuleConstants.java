@@ -178,32 +178,12 @@ public class SwerveModuleConstants {
         steerConfig.closedLoop.positionWrappingMinInput(0);
         steerConfig.closedLoop.positionWrappingMaxInput(Units.Rotation.of(1).in(Units.Degrees));
         steerConfig.closedLoop.feedbackSensor(ClosedLoopConfig.FeedbackSensor.kPrimaryEncoder);
-//        steerConfig.encoder.inverted(false);
         steerConfig.encoder.positionConversionFactor(7/150f*360);
 
 
         steerMotor.configure(steerConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
 
         steerMotor.getEncoder().setPosition(steerEncoder.getAbsolutePosition().getValue().minus(Units.Rotations.of(encoderOffset)).in(edu.wpi.first.units.Units.Degrees));
-//
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus0, 255); // Applied output
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus1, 10); // Motor movement
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus2, 10); // Motor position
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus3, 1000); // Analog sensor
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus4, 1000); // Alternate encoder
-//        steerMotor.setPeriodicFramePeriod(CANSparkMaxLowLevel.PeriodicFrame.kStatus5, 100); // Duty cycle position
-//
-//        steerMotor.setSmartCurrentLimit(10);
-//        steerMotor.getPIDController().setP(STEER_MOTOR_P);
-//        steerMotor.getPIDController().setI(STEER_MOTOR_I);
-//        steerMotor.getPIDController().setD(STEER_MOTOR_D);
-//        steerMotor.getPIDController().setPositionPIDWrappingEnabled(true);
-//        steerMotor.getPIDController().setPositionPIDWrappingMinInput(0);
-//        steerMotor.getPIDController().setPositionPIDWrappingMaxInput(Conversions.DEGREES_PER_REVOLUTIONS);
-//        steerMotor.getPIDController().setFeedbackDevice(steerMotor.getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle));
-//        steerMotor.getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle).setPositionConversionFactor(Conversions.DEGREES_PER_REVOLUTIONS);
-//
-//        steerMotor.burnFlash();
     }
 
     enum TestingSwerveModules {
