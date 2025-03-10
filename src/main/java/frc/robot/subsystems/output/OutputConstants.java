@@ -13,7 +13,8 @@ public class OutputConstants {
         L2L3 (-ANGLE_POWER,-OUT_POWER),
         STOP (0, 0),
         L1 (-L1_TOP_MOTOR_POWER, -OUT_POWER),
-        INTAKE(-ANGLE_POWER,-OUT_POWER);
+        INTAKE(-INTAKE_DOWN,-INTAKE_UP),
+        TAKEOUT(ANGLE_POWER,OUT_POWER);
         
         double upPower;
         double downPower;
@@ -30,7 +31,9 @@ public class OutputConstants {
     static final double ANGLE_POWER = 0.08
      ,OUT_POWER= -0.3
      ,L1_TOP_MOTOR_POWER = 0.12
-     , L4_TOP_POWER=0.1; 
+     , L4_TOP_POWER=0.1
+     ,INTAKE_UP=-0.4
+     ,INTAKE_DOWN=0.1;
 
 
 }
