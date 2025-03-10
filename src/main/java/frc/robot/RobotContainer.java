@@ -79,9 +79,9 @@ public class RobotContainer {
                 ()->-0.2,
                 ()->0,
                 ()->0
-        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L4).
-        raceWith(new WaitCommand (3).andThen(OutputCommands.output(OutputState.L4).withTimeout(2).
-        andThen(SwerveCommands.setHeadingCommand(Rotation2d.fromDegrees(180))))));
+        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L1).
+        andThen(OutputCommands.output(OutputState.L1).withTimeout(2)).
+        andThen(SwerveCommands.setHeadingCommand(Rotation2d.fromDegrees(180))));
         
     }
 }
