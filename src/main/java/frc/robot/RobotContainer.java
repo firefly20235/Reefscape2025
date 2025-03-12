@@ -54,8 +54,8 @@ public class RobotContainer {
         driverController2.b().whileTrue(OutputCommands.output(OutputState.TAKEOUT));
 
 
-        driverController2.povUp().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L2));
-        driverController2.povRight().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L3));
+        driverController2.povUp().and(driverController2.povDown().negate()).whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L2));
+        driverController2.povRight().and(driverController2.povDown().negate()).whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L3));
         driverController2.povDown().whileTrue(ElevatorCommands.moveToHeight(ElevatorState.L4));
 
         driverController1.x().onTrue(SwerveCommands.getResetHeadingCommand());

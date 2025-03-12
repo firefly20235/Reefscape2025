@@ -6,8 +6,6 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.output.OutputConstants.OutputState;
 
 public class OutputCommands {
-
-    // Regular output command (runs motor based on state)
     public static Command output(OutputState state) {
         return new RunCommand(
                 () -> {
