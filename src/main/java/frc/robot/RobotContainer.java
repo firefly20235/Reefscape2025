@@ -78,12 +78,12 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         return SwerveCommands.getResetHeadingCommand().andThen(SwerveCommands.getFieldRelativeClosedLoopSupplierDriveCommand(
-                ()->-0.2,
+                ()->0.2,
                 ()->0,
                 ()->0
-        )).withTimeout(2).andThen(ElevatorCommands.moveToHeight(ElevatorState.L1).
+        )).withTimeout(3).
         andThen(OutputCommands.output(OutputState.L1).withTimeout(2)).
-        andThen(SwerveCommands.setHeadingCommand(Rotation2d.fromDegrees(180))));
+        andThen(SwerveCommands.setHeadingCommand(Rotation2d.fromDegrees(180)));
 
     }
 }
